@@ -4,7 +4,7 @@ import json
 base_url="http://0.0.0.0:5001/get-chitchat"
 # base_url="http://18.203.115.216:5007/api/v1/reranking"
 
-qry = 'i am sad'
+qry = 'i am happy'
 
 params = {
     "query": qry,
