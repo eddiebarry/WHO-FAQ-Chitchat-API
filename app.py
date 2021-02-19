@@ -55,7 +55,7 @@ def get_chitchat():
     # ID which maps to chitchat answer
 
 
-    return 'Hello, World! The service is up for serving qna to the bot :-)'
+    return jsonify(response)
 
 @app.route('/')
 def hello_world():
