@@ -1,0 +1,7 @@
+cc.en.300.bin
+cc.en.300.bin.gz.part
+crawl-300d-2M.vec
+crawl-300d-2M.vec.zip
+wiki-news-300d-1M.vec
+venv
+.vscode
