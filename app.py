@@ -41,15 +41,14 @@ def get_chitchat():
 
     vec =  np.expand_dims(np.float32(
             app.config['model'].get_sentence_vector(
-                "I am happy"
+                request_json['query']
             )
         ),axis=0)
     
     D,I = app.config['chitchat_index'].search(vec,10)
-
     response = {
-        "chitchat_question" : app.config['id_chitchat_question'][I[0][0]],
-        "chitchat_answer" : app.config['id_chitchat_answer'][I[0][0]],
+        "chitchat_question" : app.config['id_chitchat_question'][str(I[0][0])],
+        "chitchat_answer" : app.config['id_chitchat_answer'][str(I[0][0])],
         "confidence" : D[0][0],
     }
     # ID which maps to chitchat question

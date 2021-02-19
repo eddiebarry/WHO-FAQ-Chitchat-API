@@ -10,6 +10,6 @@ params = {
     "query": qry,
 }
 
-r = requests.get(base_url, json=json.dumps(params))
+r = requests.get(base_url, data=json.dumps(params))
 response  = r.json()
 import pdb; pdb.set_trace()
