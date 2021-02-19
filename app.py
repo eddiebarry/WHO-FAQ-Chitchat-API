@@ -11,13 +11,13 @@ from flask import request, jsonify
 import numpy as np
 
 ft = fasttext.load_model('cc.en.300.bin')
-chitchat_index = faiss.read_index("./data/chitchat.bin")
+chitchat_index = faiss.read_index("./data_/chitchat.bin")
 
-f = open("./data/id_chitchat_answer.json",) 
+f = open("./data_/id_chitchat_answer.json",) 
 id_chitchat_answer = json.load(f)
 f.close()
 
-f = open("./data/id_chitchat_question.json",) 
+f = open("./data_/id_chitchat_question.json",) 
 id_chitchat_question = json.load(f)
 f.close()
 
