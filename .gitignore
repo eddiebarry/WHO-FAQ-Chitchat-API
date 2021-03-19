@@ -6,3 +6,4 @@ wiki-news-300d-1M.vec
 venv
 .vscode
 fasttext_weights.bin
+__pycache__
