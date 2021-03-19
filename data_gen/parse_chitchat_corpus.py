@@ -54,7 +54,7 @@ data_professional = parse_chitchat_file(path="/Users/edgarmonis/Desktop/code/WHO
 
 data_friendly.update(data_professional)
 
-json_file_name = "qna_combined.json"
+json_file_name = "emoji_qna_combined.json"
 with open(json_file_name , 'w') as json_file:
     json.dump(data_friendly, json_file,\
     indent = 4, sort_keys=True)
