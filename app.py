@@ -10,7 +10,7 @@ import flask
 from flask import request, jsonify
 import numpy as np
 
-ft = fasttext.load_model('./fasttext_weights.bin')
+ft = fasttext.load_model('./cc.en.300.bin')
 chitchat_index = faiss.read_index("./data/chitchat_emoji_faq.bin")
 
 f = open("./data/id_emoji_chitchat_answer.json",) 

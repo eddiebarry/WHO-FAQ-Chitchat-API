@@ -8,3 +8,5 @@ cd fastText
 sudo pip install .
 
 sudo /Users/edgarmonis/minicond/envs/venv_name/bin/pip 
+
+gunicorn --bind 0.0.0.0:5001 wsgi:app --preload
