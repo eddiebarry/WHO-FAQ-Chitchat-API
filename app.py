@@ -1,5 +1,5 @@
 #TODO : FIX imports to follow pep8 sorted order
-import sys, os, json, pdb, random, copy, hashlib, re
+import sys, os, json, pdb, random, copy, hashlib, re, sys
 from datetime import datetime
 # from flask_caching import Cache
 from collections import defaultdict 
@@ -55,6 +55,12 @@ def get_chitchat():
     }
     # ID which maps to chitchat question
     # ID which maps to chitchat answer
+    original_stdout = sys.stdout 
+    with open('./log.txt', 'a') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(" - ", "time : ", datetime.now().strftime("%H:%M:%S"),)
+        print(" - ", response)
+        sys.stdout = original_stdout
 
 
     return jsonify(response)

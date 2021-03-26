@@ -9,4 +9,4 @@ sudo pip install .
 
 sudo /Users/edgarmonis/minicond/envs/venv_name/bin/pip 
 
-gunicorn --bind 0.0.0.0:5001 wsgi:app --preload
+gunicorn --worker-class gevent --bind 0.0.0.0:5001   wsgi:app --workers 2 --worker-connections 2000 --timeout 60 --preload
