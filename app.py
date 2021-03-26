@@ -1,5 +1,5 @@
 #TODO : FIX imports to follow pep8 sorted order
-import sys, os, json, pdb, random, copy, hashlib
+import sys, os, json, pdb, random, copy, hashlib, re
 from datetime import datetime
 # from flask_caching import Cache
 from collections import defaultdict 
@@ -38,6 +38,8 @@ def get_chitchat():
     request_json = json.loads(request.data, strict=False)
     if 'query' not in request_json.keys():
         return jsonify({"message":"request does not contain query"})
+    else:
+        request_json['query'] = re.sub('[^A-Za-z0-9\s]+', '', request_json['query'])
 
     vec =  np.expand_dims(np.float32(
             app.config['model'].get_sentence_vector(
