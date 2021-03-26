@@ -53,8 +53,6 @@ def get_chitchat():
         "chitchat_answer" : app.config['id_chitchat_answer'][str(I[0][0])],
         "confidence" : float(D[0][0]),
     }
-
-    pdb.set_trace()
     # ID which maps to chitchat question
     # ID which maps to chitchat answer
 
