@@ -55,12 +55,14 @@ def get_chitchat():
     }
     # ID which maps to chitchat question
     # ID which maps to chitchat answer
-    original_stdout = sys.stdout 
-    with open('./log.txt', 'a') as f:
-        sys.stdout = f # Change the standard output to the file we created.
-        print(" - ", "time : ", datetime.now().strftime("%H:%M:%S"),)
-        print(" - ", response)
-        sys.stdout = original_stdout
+    # original_stdout = sys.stdout 
+    # with open('./log.txt', 'a') as f:
+    #     sys.stdout = f # Change the standard output to the file we created.
+    #     print(" - ", "time : ", datetime.now().strftime("%H:%M:%S"),)
+    #     print(" - ", response)
+    #     sys.stdout = original_stdout
+    print(" - ", "time : ", datetime.now().strftime("%H:%M:%S"),)
+    print(" - ", response)
 
 
     return jsonify(response)
