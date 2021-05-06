@@ -35,6 +35,9 @@ RUN /opt/conda/envs/myenv/bin/pip install .
 WORKDIR /app/WHO-FAQ-Chitchat-API
 SHELL ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "download_weights.py"]
 
+# updating dataset from Excel script:
+RUN python demo.py
+
 # conda run --no-capture-output -n myenv python download_weights.py
 # # Make RUN commands use the new environment:
 # SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
