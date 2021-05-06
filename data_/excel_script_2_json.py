@@ -60,7 +60,7 @@ def create_initial_jsons_from_script_wrapper() -> Callable:
         with open(filename, 'w') as file:
             json_dump(question_2_answer_mapping, file)
 
-        filename = os_join(json_files_dir, "labelled_data.json.json")
+        filename = os_join(json_files_dir, "labelled_data.json")
         with open(filename, 'w') as file:
             json_dump(question_2_label_mapping, file)
 
