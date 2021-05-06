@@ -123,14 +123,14 @@ print(I)
 
 
 # faiss.write_index(index, "./chitchat_faq.bin")
-faiss.write_index(index, "/WHO-FAQ-Chitchat-API/chitchat_faq.bin")
+faiss.write_index(index, "/app/WHO-FAQ-Chitchat-API/chitchat_faq.bin")
 
 
 # In[54]:
 
 
 # index2 = faiss.read_index("./chitchat_faq.bin")
-index2 = faiss.read_index("/WHO-FAQ-Chitchat-API/chitchat_faq.bin")
+index2 = faiss.read_index("/app/WHO-FAQ-Chitchat-API/chitchat_faq.bin")
 D, I = index2.search(test[:1], 4)
 
 print(D)
@@ -182,7 +182,7 @@ ft = fasttext.load_model('cc.en.300.bin')
 
 
 # f = open("/Users/edgarmonis/Desktop/code/WHO/chitchat-fasttext/data/chitchat_answers.json",) 
-f = open("/WHO-FAQ-Chitchat-API/production_data/chitchat_answers.json",)
+f = open("/app/WHO-FAQ-Chitchat-API/production_data/chitchat_answers.json",)
 chitchat_data = json.load(f)
 f.close()
 
@@ -214,13 +214,13 @@ for x in data.keys():
 
 
 # json_file_name = "id_chitchat_answer.json"
-json_file_name = "/WHO-FAQ-Chitchat-API/production_data/id_chitchat_answer.json"
+json_file_name = "/app/WHO-FAQ-Chitchat-API/production_data/id_chitchat_answer.json"
 print("writing", json_file_name)
 with open(json_file_name , 'w') as json_file:
     json.dump(id_chitchat_answer, json_file,        indent = 4, sort_keys=True)
 
 # json_file_name = "id_chitchat_question.json"
-json_file_name = "/WHO-FAQ-Chitchat-API/production_data/id_chitchat_question.json"
+json_file_name = "/app/WHO-FAQ-Chitchat-API/production_data/id_chitchat_question.json"
 print("writing", json_file_name)
 with open(json_file_name , 'w') as json_file:
     json.dump(id_chitchat_question, json_file,        indent = 4, sort_keys=True)
@@ -243,7 +243,7 @@ index.add_with_ids(chitchat_vecs,chitchat_ids)
 
 
 # faiss.write_index(index, "./chitchat.bin")
-faiss.write_index(index, "/WHO-FAQ-Chitchat-API/production_data/chitchat.bin")
+faiss.write_index(index, "/app/WHO-FAQ-Chitchat-API/production_data/chitchat.bin")
 
 
 # In[116]:

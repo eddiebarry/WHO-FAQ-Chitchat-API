@@ -36,7 +36,7 @@ WORKDIR /app/WHO-FAQ-Chitchat-API
 RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "download_weights.py"]
 
 # updating dataset from Excel script:
-RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "python demo.py"]
+RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "demo.py"]
 
 # conda run --no-capture-output -n myenv python download_weights.py
 # # Make RUN commands use the new environment:
