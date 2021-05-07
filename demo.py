@@ -123,14 +123,14 @@ print(I)
 
 
 # faiss.write_index(index, "./chitchat_faq.bin")
-faiss.write_index(index, "./chitchat_faq.bin")
+faiss.write_index(index, "./production_data/chitchat_faq.bin")
 
 
 # In[54]:
 
 
 # index2 = faiss.read_index("./chitchat_faq.bin")
-index2 = faiss.read_index("./chitchat_faq.bin")
+index2 = faiss.read_index("./production_data/chitchat_faq.bin")
 D, I = index2.search(test[:1], 4)
 
 print(D)
