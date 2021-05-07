@@ -26,7 +26,7 @@ def create_initial_jsons_from_script_wrapper() -> Callable:
         # reading the script while updating the dictionaries to be written to
         # the respective JSON files:
 
-        sheet = workbook['LXP']
+        sheet = workbook['Chitchat']
         question_2_answer_mapping = {}
         question_2_label_mapping = {}
 
