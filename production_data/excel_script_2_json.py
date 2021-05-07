@@ -30,9 +30,9 @@ def create_initial_jsons_from_script_wrapper() -> Callable:
         question_2_answer_mapping = {}
         question_2_label_mapping = {}
 
-        # iterating through row cells of the first column - the first two row
-        # cells contain an header and a blank separator:
-        for questions, answer in zip(sheet['A'][2:], sheet['B'][2:]):
+        # iterating through row cells of the first column - the first row
+        # cell contains a header:
+        for questions, answer in zip(sheet['A'][1:], sheet['B'][1:]):
 
             # designers leave questions/answers blank when the respective
             # answers/questions are not available/ready yet:
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     OUTPUT_FILES_DIR = getcwd()
     SCRIPT_PATH = os_join(
         getcwd(),
-        "Script-updated-database._updated_date_06-05-2021_time_15-32-33.xlsx"
+        "Script-updated-database_updated_date_07-05-2021_time_11-36-18.xlsx"
     )
 
     create_initial_jsons_from_script(
