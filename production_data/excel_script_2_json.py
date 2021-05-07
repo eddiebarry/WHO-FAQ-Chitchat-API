@@ -30,10 +30,9 @@ def create_initial_jsons_from_script_wrapper() -> Callable:
         question_2_answer_mapping = {}
         question_2_label_mapping = {}
 
-        # iterating through row cells of the first column - the first five row
-        # cells contain an header, a blank separator and additional design
-        # specifications that are not questions/sentences:
-        for questions, answer in zip(sheet['A'][5:], sheet['B'][5:]):
+        # iterating through row cells of the first column - the first two row
+        # cells contain an header and a blank separator:
+        for questions, answer in zip(sheet['A'][2:], sheet['B'][2:]):
 
             # designers leave questions/answers blank when the respective
             # answers/questions are not available/ready yet:
