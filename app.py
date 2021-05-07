@@ -11,7 +11,8 @@ from flask import request, jsonify
 import numpy as np
 
 ft = fasttext.load_model('./cc.en.300.bin')
-chitchat_index = faiss.read_index("./production_data/chitchat_emoji_faq.bin")
+# chitchat_index = faiss.read_index("./production_data/chitchat_emoji_faq.bin")
+chitchat_index = faiss.read_index("./production_data/chitchat_faq.bin")
 
 f = open("./production_data/id_emoji_chitchat_answer.json",) 
 id_chitchat_answer = json.load(f)
