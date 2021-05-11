@@ -5,3 +5,9 @@ The default venv is called venv_name
 
 
 We include emojis for all new things
+
+## How to Update the Chit-Chat Dataset Based on the Q&As Contained in the Script Given by Product Designers
+First, on your local, assuming you are in the directory "production_data" under the root directory of\
+the repository, update the file called "Script-updated-database.xlsx" with the new script and execute\
+this command: `python excel_script_2_json.py`. Then, push the code changes to GitHub and trigger a new\
+build.

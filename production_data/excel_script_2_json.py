@@ -77,7 +77,7 @@ if __name__ == "__main__":
     OUTPUT_FILES_DIR = getcwd()
     SCRIPT_PATH = os_join(
         getcwd(),
-        "Script-updated-database_updated_date_07-05-2021_time_11-36-18.xlsx"
+        "Script-updated-database.xlsx"
     )
 
     create_initial_jsons_from_script(
