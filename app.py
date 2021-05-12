@@ -41,8 +41,10 @@ def get_chitchat():
     request_json = json.loads(request.data, strict=False)
     if 'query' not in request_json.keys():
         return jsonify({"message":"request does not contain query"})
-    else:
-        request_json['query'] = re.sub('[^A-Za-z0-9\s]+', '', request_json['query'])
+
+    request_json['query'] = re.sub(
+        '[^A-Za-z0-9\s]+', '', request_json['query']
+    ).lower()
 
     vec =  np.expand_dims(np.float32(
             app.config['model'].get_sentence_vector(

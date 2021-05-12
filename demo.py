@@ -62,9 +62,20 @@ data = json.load(f)
 # In[8]:
 
 
+import re
+
+
+def preprocess(text):
+    """
+    Preprocess the input text by removing punctuation and special characters
+    while turning any alphabetic character to lowercase.
+    """
+    return re.sub('[^A-Za-z0-9\s]+', '', text).lower()
+
+
 vec_labels = {}
 for x in data.keys():
-    vec_labels[x] = (x,ft.get_sentence_vector(x))
+    vec_labels[x] = (x,ft.get_sentence_vector(preprocess(x)))
 
 
 # In[23]:
