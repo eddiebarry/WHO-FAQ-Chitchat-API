@@ -33,11 +33,11 @@ RUN apt install -y g++
 RUN /opt/conda/envs/myenv/bin/pip install .
 RUN /opt/conda/envs/myenv/bin/pip install emoji==1.2.0 spacy==2.3.2
 
-WORKDIR /app/WHO-FAQ-Chitchat-API
-RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "download_weights.py"]
-
 # loading lexical model:
 RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "-m", "spacy", "download", "en_core_web_sm"]
+
+WORKDIR /app/WHO-FAQ-Chitchat-API
+RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "download_weights.py"]
 
 # updating the indexed sentences and the JSON datasets from the Excel script:
 RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "demo.py"]
