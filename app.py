@@ -10,6 +10,8 @@ import flask
 from flask import request, jsonify
 import numpy as np
 
+from preprocessing import preprocess
+
 ft = fasttext.load_model('./cc.en.300.bin')
 # chitchat_index = faiss.read_index("./production_data/chitchat_emoji_faq.bin")
 chitchat_index = faiss.read_index("./production_data/chitchat_faq.bin")
@@ -42,9 +44,7 @@ def get_chitchat():
     if 'query' not in request_json.keys():
         return jsonify({"message":"request does not contain query"})
 
-    request_json['query'] = re.sub(
-        '[^A-Za-z0-9\s]+', '', request_json['query']
-    ).lower()
+    request_json['query'] = preprocess(request_json['query'])
 
     vec =  np.expand_dims(np.float32(
             app.config['model'].get_sentence_vector(
