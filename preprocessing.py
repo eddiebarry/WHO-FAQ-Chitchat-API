@@ -5,7 +5,7 @@ Note that the following functions are not computationally optimized yet.
 """
 
 
-import re
+from re import sub as re_sub
 
 from spacy import load as spacy_load
 
@@ -60,7 +60,7 @@ def preprocess(sentence_text: str) -> str:
         4) turning any alphabetic character to lowercase,
         5) removing duplicate whitespaces.
     """
-    return re.sub(
+    return re_sub(
         ' +',
         ' ',
         remove_punctuation_and_special_characters(
@@ -97,7 +97,7 @@ def remove_punctuation_and_special_characters(sentence_text: str) -> str:
     """
     Remove punctuation and special characters.
     """
-    return re.sub('[^A-Za-z0-9\s]+', ' ', sentence_text)
+    return re_sub('[^A-Za-z0-9\s]+', ' ', sentence_text)
 
 
 def replace_emojis_with_words(sentence_text: str) -> str:
