@@ -31,9 +31,10 @@ WORKDIR /app/WHO-FAQ-Chitchat-API/fastText
 RUN apt-get update
 RUN apt install -y g++
 RUN /opt/conda/envs/myenv/bin/pip install .
+
 RUN /opt/conda/envs/myenv/bin/pip install emoji==1.2.0 spacy==2.3.2
 
-# loading lexical model:
+# downloading lexical model:
 RUN ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "-m", "spacy", "download", "en_core_web_sm"]
 
 WORKDIR /app/WHO-FAQ-Chitchat-API
