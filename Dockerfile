@@ -6,22 +6,18 @@
 # git clone https://github.com/facebookresearch/fastText.git
 # cd fastText
 # sudo pip install .
-
 # sudo /Users/edgarmonis/minicond/envs/venv_name/bin/pip 
-
 # gunicorn --worker-class gevent --bind 0.0.0.0:5001   wsgi:app --workers 2 --worker-connections 2000 --timeout 60 --preload
 
 FROM continuumio/miniconda3
 
-WORKDIR /app
+WORKDIR /app/WHO-FAQ-Chitchat-API
 
 # Create the environment:
 # COPY . .
 # ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-RUN git clone --branch fix/os-deployment https://github.com/eddiebarry/WHO-FAQ-Chitchat-API.git
-
-WORKDIR /app/WHO-FAQ-Chitchat-API
+COPY . .
 
 RUN conda env create -f env.yaml
 
