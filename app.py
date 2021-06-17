@@ -1,18 +1,28 @@
-#TODO : FIX imports to follow pep8 sorted order
-import sys, os, json, pdb, random, copy, hashlib, re, sys
 from datetime import datetime
-# from flask_caching import Cache
-from collections import defaultdict 
+import json
+from os import chdir, getcwd
+from os.path import join as os_join
 from threading import Thread
 
 import fasttext, faiss
 import flask
 from flask import request, jsonify
+# from flask_caching import Cache
 import numpy as np
 
 from preprocessing import preprocess
 
-ft = fasttext.load_model('./cc.en.300.bin')
+
+MODEL_WEIGHTS_DIR = os_join(
+    getcwd(),
+    "model_weights"
+)
+MODEL_WEIGHTS_PATH = os_join(
+    MODEL_WEIGHTS_DIR,
+    "cc.en.300.bin"
+)
+
+
 # chitchat_index = faiss.read_index("./production_data/chitchat_emoji_faq.bin")
 chitchat_index = faiss.read_index("./production_data/chitchat_faq.bin")
 
@@ -28,7 +38,6 @@ f.close()
 
 # SETUP
 app = flask.Flask(__name__)
-app.config['model']=ft
 # Only chithcat index
 app.config['chitchat_index']=chitchat_index
 app.config['id_chitchat_answer']=id_chitchat_answer
@@ -36,6 +45,24 @@ app.config['id_chitchat_question']=id_chitchat_question
 
 # Combined index
 # app.config['chitchat_index']=index
+
+
+@app.route('/download-weights', methods=['GET'])
+def download_model_weights():
+    """
+    Download the embedding model weights and load it into a configuration
+    variable so that it i sloaded only once during the application lifetime.
+    """
+    # downloading the model weights:
+    current_path = getcwd()
+    chdir(MODEL_WEIGHTS_DIR)
+    fasttext.util.download_model('en', if_exists='ignore')
+    chdir(current_path)
+
+    # loading the model only once, as a "global" variable for the application:
+    app.config['model'] = fasttext.load_model(MODEL_WEIGHTS_PATH)
+
+    return 200, "Model weights successfuly downloaded."
 
 
 @app.route('/get-chitchat', methods=['GET'])
@@ -68,7 +95,6 @@ def get_chitchat():
     #     sys.stdout = original_stdout
     print(" - ", "time : ", datetime.now().strftime("%H:%M:%S"),)
     print(" - ", response)
-
 
     return jsonify(response)
 
