@@ -11,13 +11,15 @@
 
 FROM continuumio/miniconda3
 
-WORKDIR /app/WHO-FAQ-Chitchat-API
+WORKDIR /app
 
 # Create the environment:
 # COPY . .
 # ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-COPY . .
+COPY . /WHO-FAQ-Chitchat-API
+
+WORKDIR /app/WHO-FAQ-Chitchat-API
 
 RUN conda env create -f env.yaml
 
