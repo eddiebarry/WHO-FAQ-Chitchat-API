@@ -2,6 +2,7 @@ from datetime import datetime
 import json
 from os import chdir, getcwd
 from os.path import join as os_join
+from subprocess import call as subprocess_call
 from threading import Thread
 
 import fasttext, faiss
@@ -63,6 +64,17 @@ def download_model_weights():
     app.config['model'] = fasttext.load_model(MODEL_WEIGHTS_PATH)
 
     return 200, "Model weights successfuly downloaded."
+
+
+@app.route('/prepare-knowledge-base', methods=['GET'])
+def prepare_knowledge_base():
+    """
+    Process and index the knowledge base, generating the files used by the
+    application to serve chit-chat retrieval requests at runtime.
+    """
+    subprocess_call("demo.py", shell=True)
+
+    return 200, "Knowledge base successfully processed and indexed."
 
 
 @app.route('/get-chitchat', methods=['GET'])
