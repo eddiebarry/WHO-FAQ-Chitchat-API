@@ -19,7 +19,7 @@ WORKDIR /app
 # COPY . .
 # ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-RUN git clone --branch dev/data-from-script https://github.com/eddiebarry/WHO-FAQ-Chitchat-API.git
+RUN git clone --branch fix/os-deployment https://github.com/eddiebarry/WHO-FAQ-Chitchat-API.git
 
 WORKDIR /app/WHO-FAQ-Chitchat-API
 
