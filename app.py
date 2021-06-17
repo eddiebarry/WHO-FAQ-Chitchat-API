@@ -1,5 +1,5 @@
 #TODO : FIX imports to follow pep8 sorted order
-import sys, os, json, pdb, random, copy, hashlib
+import sys, os, json, pdb, random, copy, hashlib, re, sys
 from datetime import datetime
 # from flask_caching import Cache
 from collections import defaultdict 
@@ -10,14 +10,19 @@ import flask
 from flask import request, jsonify
 import numpy as np
 
-ft = fasttext.load_model('cc.en.300.bin')
-chitchat_index = faiss.read_index("./data_/chitchat.bin")
+from preprocessing import preprocess
 
-f = open("./data_/id_chitchat_answer.json",) 
+ft = fasttext.load_model('./cc.en.300.bin')
+# chitchat_index = faiss.read_index("./production_data/chitchat_emoji_faq.bin")
+chitchat_index = faiss.read_index("./production_data/chitchat_faq.bin")
+
+# f = open("./production_data/id_emoji_chitchat_answer.json",) 
+f = open("./production_data/id_chitchat_answer.json",)
 id_chitchat_answer = json.load(f)
 f.close()
 
-f = open("./data_/id_chitchat_question.json",) 
+# f = open("./production_data/id_emoji_chitchat_question.json",) 
+f = open("./production_data/id_chitchat_question.json",)
 id_chitchat_question = json.load(f)
 f.close()
 
@@ -39,13 +44,15 @@ def get_chitchat():
     if 'query' not in request_json.keys():
         return jsonify({"message":"request does not contain query"})
 
+    request_json['query'] = preprocess(request_json['query'])
+
     vec =  np.expand_dims(np.float32(
             app.config['model'].get_sentence_vector(
                 request_json['query']
             )
         ),axis=0)
     
-    D,I = app.config['chitchat_index'].search(vec,10)
+    D,I = app.config['chitchat_index'].search(vec,1)
     response = {
         "chitchat_question" : app.config['id_chitchat_question'][str(I[0][0])],
         "chitchat_answer" : app.config['id_chitchat_answer'][str(I[0][0])],
@@ -53,6 +60,14 @@ def get_chitchat():
     }
     # ID which maps to chitchat question
     # ID which maps to chitchat answer
+    # original_stdout = sys.stdout 
+    # with open('./log.txt', 'a') as f:
+    #     sys.stdout = f # Change the standard output to the file we created.
+    #     print(" - ", "time : ", datetime.now().strftime("%H:%M:%S"),)
+    #     print(" - ", response)
+    #     sys.stdout = original_stdout
+    print(" - ", "time : ", datetime.now().strftime("%H:%M:%S"),)
+    print(" - ", response)
 
 
     return jsonify(response)

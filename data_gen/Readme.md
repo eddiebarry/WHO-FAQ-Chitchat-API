@@ -1,0 +1,1 @@
+Changed "I dont have a name" to "My name is Cognity"
